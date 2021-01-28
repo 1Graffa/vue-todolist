@@ -25,8 +25,9 @@ var app = new Vue({
     // lo pushamo nella lista elementi eliminati
     this.todosDelete.push(this.todos[index]);
       //e lo togliamo dall'array con splice e indichiamo (1) che dobbiamo eliminare quello soltanto (possiamo indicare volendo dopo il numero come o con cosa sostituirlo, noi mettiamo una stringa )
-    this.todos.splice(index, 1);
     alert("hai eliminato " + this.todos[index]);
+    this.todos.splice(index, 1);
+
     },
     restoreTodo(index){
       this.todos.push(this.todosDelete[index]);
