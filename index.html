@@ -27,7 +27,7 @@
   <div class="todos-lista">
     <div class="lista-eliminati">
       <ul>
-        <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}}</li>
+        <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}} <span><i class="fas fa-trash-restore" @click = "restoreTodo(index)"></i><i class="fas fa-times"></i></span></li>
       </ul>
     </div>
   </div>

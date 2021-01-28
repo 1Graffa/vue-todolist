@@ -35,5 +35,7 @@ h3 {
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid #00E165;
-
+}
+.todos-lista li i{
+	padding-left: 8px;
 }
