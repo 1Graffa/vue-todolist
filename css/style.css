@@ -1,0 +1,39 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#app{
+	width: 100%;
+	margin: auto;
+}
+.logo {
+	margin: auto;
+	text-align: center;
+	padding: 20px;
+}
+.logo>img{
+	width: 300px;
+}
+.inserimento{
+	margin: auto;
+	text-align: center;
+}
+.todos-lista{
+	padding-top: 50px;
+	width: 50%;
+	margin: auto;
+	line-height: 1.6;
+}
+h3 {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 50%;
+	margin: auto;
+	text-align: center;
+}
+.todos-lista li{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #00E165;
+
+}

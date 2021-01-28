@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>todo list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <div class="logo">
+    <img src="https://www.boolean.careers/images/misc/logo.png" alt="logo">
+  </div>
+  <div class="inserimento">
+    <input type="text" @keyup.enter="addTodo" v-model="newTodo" placeholder="inserisci un dato">
+    <button @click="addTodo" type="button">inserisci</button>
+  </div>
+  <div class="todos-container">
+    <ul class="todos-lista" v-if="todos.length > 0">
+      <li v-for="(todo,index) in todos"><span>{{ (index + 1) + ") " + todo }}</span><i class="fas fa-times" @click = "deleteTodo(index)" :title ="(index)" ></i></li>
+    </ul>
+    <h3 v-else>Non ci sono più elementi nella lista</h3>
+  </div>
+  <hr>
+  <div class="todos-lista">
+    <div class="lista-eliminati">
+      <ul>
+        <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+    <script src="js/script.js" charset="utf-8"></script>
+</body>
+</html>
