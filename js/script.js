@@ -32,14 +32,20 @@ var app = new Vue({
         this.newTodo = "";
         }
       },
-
     // ora dobbiamo passare l indice dell elemento che vogliamo eliminare :
     deleteTodo(index){
-    // lo pushamo nella lista elementi eliminati
-    this.todosDelete.push(this.todos[index]);
-      //e lo togliamo dall'array con splice e indichiamo (1) che dobbiamo eliminare quello soltanto (possiamo indicare volendo dopo il numero come o con cosa sostituirlo, noi mettiamo una stringa )
-    alert("hai eliminato " + this.todos[index]);
-    this.todos.splice(index, 1);
+
+    //abbiamo messo un corfirm che indica se si è sicuri di procedere o
+
+    // al sì 1) lo pushamo nella lista elementi eliminati
+    // 2) lo togliamo dall'array con splice e indichiamo (1) che dobbiamo eliminare quello soltanto (possiamo indicare volendo dopo il numero come o con cosa sostituirlo, noi mettiamo una stringa )
+    let msg = confirm("Sei sicuro di voler eliminare '" + this.todos[index] + "'  dall'elenco ?");
+      if (msg == true) {
+        this.todosDelete.push(this.todos[index]);
+        this.todos.splice(index, 1);
+      } else if (msg == false) {
+        alert("Voce non eliminata!");
+      }
     },
     restoreTodo(index){
       this.todos.push(this.todosDelete[index]);

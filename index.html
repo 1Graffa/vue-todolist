@@ -9,29 +9,35 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="app">
-  <div class="logo">
-    <img src="https://www.boolean.careers/images/misc/logo.png" alt="logo">
-  </div>
-  <div class="inserimento">
-    <input type="text" @keyup.enter="addTodo" v-model="newTodo" placeholder="inserisci un dato">
-    <button @click="addTodo" type="button">inserisci</button>
-  </div>
-  <div class="todos-container">
-    <ul class="todos-lista" v-if="todos.length > 0">
-      <li v-for="(todo,index) in todos"><span>{{ (index + 1) + ") " + todo }}</span><i class="fas fa-times" @click = "deleteTodo(index)" :title ="(index)" ></i></li>
-    </ul>
-    <h3 v-else>Non ci sono più elementi nella lista</h3>
-  </div>
-  <hr>
-  <div class="todos-lista">
-    <div class="lista-eliminati">
-      <ul>
-        <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}} <span><i class="fas fa-trash-restore" @click = "restoreTodo(index)"></i><i class="fas fa-times"></i></span></li>
+  <div id="app">
+    <div class="logo">
+      <img src="https://www.boolean.careers/images/misc/logo.png" alt="logo">
+    </div>
+    <div class="inserimento">
+      <input type="text" @keyup.enter="addTodo" v-model="newTodo" placeholder="inserisci un dato">
+      <button @click="addTodo" type="button">inserisci</button>
+    </div>
+    <div class="todos-container">
+      <h2>Elenco cose da fare</h2>
+      <img v-if="todos.length > 0"src="img/Drake1.jpg" alt="">
+      <img v-else src="img/Drake2.jpg" alt="">
+      <ul class="todos-lista" v-if="todos.length > 0">
+        <li v-for="(todo,index) in todos"><span>{{ (index + 1) + ") " + todo }}</span><i class="fas fa-times" @click = "deleteTodo(index)" :title ="(index)" ></i></li>
       </ul>
+      <h3 v-else>Non hai più cose da fare per oggi!</h3>
+    </div>
+    <hr>
+    <div class="todos-lista">
+      <div class="cestino">
+        <h3 v-if="todosDelete.length == 0">Non ci sono elementi nel cestino</h3>
+        <h3 v-else-if="todosDelete.length == 1">Hai un elemento nel cestino</h3>
+        <h3 v-else>Hai {{todosDelete.length}} elementi nel cestino</h3>
+        <ul>
+          <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}} <span><i class="fas fa-trash-restore" @click = "restoreTodo(index)"></i><i class="fas fa-times"></i></span></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
     <script src="js/script.js" charset="utf-8"></script>
 </body>
 </html>
