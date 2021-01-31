@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>todo list</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -11,31 +13,50 @@
 <body>
   <div id="app">
     <div class="logo">
-      <img src="https://www.boolean.careers/images/misc/logo.png" alt="logo">
+      <img src="img/logo.png" alt="logo">
+      <span>..il tuo allenamento da casa!</span>
     </div>
+    <!-- ***************INPUT*************** -->
     <div class="inserimento">
-      <input type="text" @keyup.enter="addTodo" v-model="newTodo" placeholder="inserisci un dato">
-      <button @click="addTodo" type="button">inserisci</button>
+      <input type="text" @keyup.enter="addTodo" v-model="newTodo" placeholder="Inserisci nuovo esercizio">
+      <button class="btn1" @click="addTodo" type="button">Aggiungi a scheda</button>
     </div>
+    <!-- /***************INPUT*************** -->
+    <!-- ***************SCHEDA*************** -->
     <div class="todos-container">
-      <h2>Elenco cose da fare</h2>
+      <h2>Scheda d'allenamento</h2>
       <img v-if="todos.length > 0"src="img/Drake1.jpg" alt="">
       <img v-else src="img/Drake2.jpg" alt="">
       <ul class="todos-lista" v-if="todos.length > 0">
-        <li v-for="(todo,index) in todos"><span>{{ (index + 1) + ") " + todo }}</span><i class="fas fa-times" @click = "deleteTodo(index)" :title ="(index)" ></i></li>
+        <li v-for="(todo,index) in todos">
+          <span>{{ (index + 1) + ") " + todo }}</span>
+          <div class="icons">
+            <!-- edit -->
+            <i class="fas fa-edit" @click = "editTodo(index)"></i>
+            <!-- move to trash -->
+            <i class="fas fa-times" @click = "deleteTodo(index)" :title ="(index)" ></i>
+          </div></li>
       </ul>
-      <h3 v-else>Non hai più cose da fare per oggi!</h3>
+      <button v-if="todos.length > 0" class="all-in-a-row">
+        All in a row :<i class="fas fa-dumbbell" @click="allTogheder()"></i>
+      </button>
+      <h3 v-else>BEN FATTO! Hai completato tutti i tuoi allenamenti quotidiani previsti!</<h3>
     </div>
+    <!-- /***************SCHEDA*************** -->
     <hr>
     <div class="todos-lista">
+    <!-- ***************CESTINO*************** -->
       <div class="cestino">
-        <h3 v-if="todosDelete.length == 0">Non ci sono elementi nel cestino</h3>
-        <h3 v-else-if="todosDelete.length == 1">Hai un elemento nel cestino</h3>
-        <h3 v-else>Hai {{todosDelete.length}} elementi nel cestino</h3>
+        <div class="commenti">
+          <h3 v-if="todosDelete.length == 0">Al momento non hai completato nessun esercizio.</h3>
+          <h3 class="commento-svuota" v-else-if="todos.length == 0">Svuota elenco degli esercizi completati <i class="fas fa-trash-alt" @click ="clearCache()"></i></h3>
+          <h3 v-else>Hai completato {{todosDelete.length}} dei tuoi esercizi</h3>
+        </div>
         <ul>
-          <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}} <span><i class="fas fa-trash-restore" @click = "restoreTodo(index)"></i><i class="fas fa-times"></i></span></li>
+            <li v-for="(todo,index) in todosDelete">{{index + 1 + " : " + todo}} <span><i class="fas fa-trash-restore" @click = "restoreTodo(index)"></i><i class="fas fa-times" @click = "deleteFromTrash(index)"></i></span></li>
         </ul>
       </div>
+  <!-- /***************CESTINO*************** -->
     </div>
   </div>
     <script src="js/script.js" charset="utf-8"></script>

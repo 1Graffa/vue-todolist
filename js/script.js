@@ -1,10 +1,7 @@
 // Realizzare una todolist con Vue. La lista deve essere già popolata con alcuni elementi e si deve dare la possibilità di aggiungere nuovi item e di cancellarli.
 // Bonus 1): permettere ai file cancellati di finire in un'area 'cestino' dove possono essere eliminati del tutto oppure ripristinati.
 // Bonus 2): Dare la possibilità di eliminare tutti i file dal cestino
-// Aggiungete quello che più vi piace a piacere!
-// inserire il nuovo todo
 // modificare un todo Bonus
-// spostare il todo nel cestino
 // pulsante per spostare tutti i todo nel cestino Bonus
 // ripristinare dal cestino un todo  Bonus
 // eliminare definitivamente un todo dal cestino Bonus
@@ -16,10 +13,11 @@ var app = new Vue({
   data : {
     newTodo: "",
     todos: [
-      "Fare i compiti",
-      "Fare la spesa",
-      "Studiare",
-      "Ginnastica"
+      "50 piegamenti sulle braccia",
+      "100 crunch addome",
+      "40 flessioni sulle gambe",
+      "4 minuti in plank",
+      "10 minuti di stretching"
     ],
     todosDelete: []
   },
@@ -47,9 +45,29 @@ var app = new Vue({
         alert("Voce non eliminata!");
       }
     },
+    //modifica di una voce dalla scheda di allenamento
+    editTodo(index){
+      this.todos.splice(index, 1,prompt("Modifica la voce"));
+    },
+    //sposta istantaneamente tutte le voci dalla scheda al cestino
+    allTogheder(){
+      this.todos = [];
+    },
+    // ripristina singolarmente le voci
     restoreTodo(index){
       this.todos.push(this.todosDelete[index]);
       this.todosDelete.splice(index,1);
+    },
+    //elimina singolarmente dal cestino
+    deleteFromTrash(index){
+      this.todosDelete.splice(index, 1);
+      alert("Voce eliminata");
+    },
+    // svuota il cestino (elimina definitivamente)
+    clearCache(){
+      this.todosDelete = [];
+      alert("Hai eliminato tutte le voci");
     }
   }
+
 });
