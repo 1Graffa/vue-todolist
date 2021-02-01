@@ -51,6 +51,7 @@ var app = new Vue({
     },
     //sposta istantaneamente tutte le voci dalla scheda al cestino
     allTogheder(){
+      this.todosDelete.push(...this.todos);
       this.todos = [];
     },
     // ripristina singolarmente le voci
